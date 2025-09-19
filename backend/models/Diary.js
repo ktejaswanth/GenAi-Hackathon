@@ -1,27 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const Diary = require("../models/Diary");
+import mongoose from "mongoose";
 
-// ➝ Create diary entry
-router.post("/", async (req, res) => {
-  try {
-    const { content } = req.body;
-    const newEntry = new Diary({ content });
-    await newEntry.save();
-    res.status(201).json(newEntry);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+const diarySchema = new mongoose.Schema(
+  {
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 
-// ➝ Get all diary entries
-router.get("/", async (req, res) => {
-  try {
-    const entries = await Diary.find().sort({ date: -1 });
-    res.json(entries);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-module.exports = router;
+export default mongoose.model("Diary", diarySchema);

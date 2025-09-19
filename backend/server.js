@@ -1,22 +1,31 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-require("dotenv").config();
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
 
-const diaryRoutes = require("./routes/diaryRoutes");  // ✅ no () here
+import authRoutes from "./routes/authRoutes.js";
+import diaryRoutes from "./routes/diaryRoutes.js";
 
+
+dotenv.config();
 const app = express();
+//import diaryRoutes from "./routes/diaryRoutes.js";
+app.use("/api/diaries", diaryRoutes);
+
+// after app.use("/api/auth", authRoutes);
+
+
 app.use(cors());
 app.use(express.json());
 
-// ✅ Correct usage
-app.use("/api/diary", diaryRoutes);
+// Routes
+app.use("/api/auth", authRoutes);
 
+// DB & Server
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("MongoDB Connected");
-    app.listen(process.env.PORT || 5000, () => {
-      console.log(`Server running on port ${process.env.PORT || 5000}`);
+    app.listen(process.env.PORT, () => {
+      console.log(`🚀 Server running on port ${process.env.PORT}`);
     });
   })
-  .catch(err => console.error(err));
+  .catch(err => console.log(err));
