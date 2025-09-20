@@ -1,0 +1,84 @@
+/* General page */
+.homepage {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center card horizontally */
+  padding: 2rem;
+}
+
+/* Card container (same feel as Login form) */
+.page-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 900px;
+  overflow: hidden; /* keeps sections clean */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar inside card */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #9333ea;
+  padding: 1rem 2rem;
+  color: white;
+  border-radius: 12px 12px 0 0; /* round top corners */
+}
+
+.navbar h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Keep buttons the same */
+.nav-links button {
+  background: white;
+  color: #9333ea;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.nav-links button:hover {
+  background: #7e22ce;
+  color: white;
+}
+
+/* Section styles */
+.about, .contact, .feedback {
+  padding: 2rem;
+  text-align: center;
+}
+
+.about {
+  background: #f3e8ff;
+}
+
+.contact {
+  background: #e9d5ff;
+}
+
+.feedback {
+  background: #f3e8ff;
+}
+
+/* Footer inside card */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #1e1b4b;
+  color: #e9d5ff;
+  border-radius: 0 0 12px 12px; /* round bottom corners */
+}

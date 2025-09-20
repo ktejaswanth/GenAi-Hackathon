@@ -3,11 +3,10 @@ import Diary from "../models/Diary.js";
 // Create Entry
 export const createDiary = async (req, res) => {
   try {
-    const { title, content } = req.body;
+    const { text } = req.body;
     const newDiary = new Diary({
       user: req.user.id,
-      title,
-      content,
+      text,
     });
     await newDiary.save();
     res.status(201).json(newDiary);
@@ -19,7 +18,7 @@ export const createDiary = async (req, res) => {
 // Get All Entries (only for logged-in user)
 export const getDiaries = async (req, res) => {
   try {
-    const diaries = await Diary.find({ user: req.user.id });
+    const diaries = await Diary.find({ user: req.user.id }).sort({ createdAt: -1 });
     res.json(diaries);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -32,7 +31,7 @@ export const updateDiary = async (req, res) => {
     const { id } = req.params;
     const updated = await Diary.findOneAndUpdate(
       { _id: id, user: req.user.id },
-      req.body,
+      { text: req.body.text },
       { new: true }
     );
     if (!updated) return res.status(404).json({ message: "Diary not found" });

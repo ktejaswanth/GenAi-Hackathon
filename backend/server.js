@@ -6,20 +6,15 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import diaryRoutes from "./routes/diaryRoutes.js";
 
-
 dotenv.config();
 const app = express();
-//import diaryRoutes from "./routes/diaryRoutes.js";
-app.use("/api/diaries", diaryRoutes);
-
-// after app.use("/api/auth", authRoutes);
-
 
 app.use(cors());
 app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/diary", diaryRoutes); // ✅ match frontend API
 
 // DB & Server
 mongoose.connect(process.env.MONGO_URI)
