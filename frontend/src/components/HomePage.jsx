@@ -6,19 +6,17 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   return (
-
+    <div className="homepage">
       <div className="page-container">
-        {/* Navbar */}
         <header className="navbar">
-          <h1>📓 My Diary App</h1>
+          <h1>
+            <span role="img" aria-label="notebook emoji">📓</span> My Diary App
+          </h1>
           <nav className="nav-links">
-            <button onClick={() => navigate("/")}>Home</button>
             <button onClick={() => navigate("/login")}>Sign In</button>
             <button onClick={() => navigate("/register")}>Sign Up</button>
           </nav>
         </header>
-
-        {/* About Section */}
         <section className="about">
           <h2>About</h2>
           <p>
@@ -26,11 +24,10 @@ export default function HomePage() {
             Secure, private, and always accessible.
           </p>
         </section>
-
-        {/* Footer */}
         <footer>
           <p>© 2025 My Diary App | Built with ❤️</p>
         </footer>
       </div>
+    </div>
   );
 }

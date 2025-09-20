@@ -4,33 +4,41 @@ import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Diary from "./components/Diary";
+import FocusMonitor from "./components/FocusMonitor"; // Import the new component
+import "./App.css";
 
 function App() {
   const [user, setUser] = useState(null);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
+  const handleLogin = (userData) => {
+    setUser(userData);
+  };
+
+  const PrivateRoute = ({ children }) => {
+    const isAuthenticated = localStorage.getItem("token");
+    return isAuthenticated ? children : <Navigate to="/login" />;
   };
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login onLogin={setUser} />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/diary"
           element={
-            user ? (
-              <>
-                <h2>Welcome, {user.name}</h2>
-                <button onClick={handleLogout}>Logout</button>
-                <Diary />
-              </>
-            ) : (
-              <Navigate to="/login" />
-            )
+            <PrivateRoute>
+              <Diary />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/focus"
+          element={
+            <PrivateRoute>
+              <FocusMonitor />
+            </PrivateRoute>
           }
         />
       </Routes>

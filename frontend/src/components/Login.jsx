@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../css/Login.css";
 
-
-
 export default function Login({ onLogin }) {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -26,11 +24,13 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Sign In</h2>
-      <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
-      <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
-      <button type="submit">Login</button>
-    </form>
+    <div className="auth-page">
+      <form onSubmit={handleSubmit} className="auth-form">
+        <h2>Sign In</h2>
+        <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
+        <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }

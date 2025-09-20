@@ -1,94 +1,245 @@
+/* Diary.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f0f2f5 0%, #d4e3ff 100%);
+  min-height: 100vh;
+}
+
 .diary-container {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .diary-container h2 {
   text-align: center;
-  margin-bottom: 20px;
-}
-
-.diary-form textarea {
-  width: 100%;
-  min-height: 80px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  resize: vertical;
-}
-
-.diary-form button {
-  margin-top: 10px;
-  padding: 10px;
-  background: #673AB7;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.diary-form button:hover {
-  background: #5E35B1;
-}
-
-.diary-list {
-  margin-top: 20px;
-  list-style: none;
-  padding: 0;
-}
-
-.diary-list li {
-  background: #f9f9f9;
-  margin: 10px 0;
-  padding: 12px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
-}
-
-.diary-list small {
-  display: block;
-  color: #777;
-  margin-top: 5px;
-}
-
-.diary-list button {
-  margin-right: 5px;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.diary-list button:first-of-type {
-  background: #FF9800;
-  color: white;
-}
-
-.diary-list button:last-of-type {
-  background: #E91E63;
-  color: white;
+  margin-bottom: 25px;
+  color: #333;
 }
 
 .diary-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.logout-btn,
+.focus-btn {
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 500;
 }
 
 .logout-btn {
   background: #e3342f;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
 .logout-btn:hover {
   background: #c53030;
+  transform: translateY(-2px);
+}
+
+.focus-btn {
+  background: #2575fc;
+}
+
+.focus-btn:hover {
+  background: #1a5fd0;
+  transform: translateY(-2px);
+}
+
+.diary-form textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  resize: vertical;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border 0.3s ease;
+}
+
+.diary-form textarea:focus {
+  border-color: #673ab7;
+  outline: none;
+}
+
+.diary-form button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #673ab7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.diary-form button:hover {
+  background: #5e35b1;
+  transform: translateY(-2px);
+}
+
+.entries-list {
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.entry {
+  background: #f8f8f8;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.entry:hover {
+  transform: translateY(-5px);
+}
+
+.entry-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-content p {
+  margin: 0 0 10px 0;
+  color: #555;
+  white-space: pre-wrap;
+}
+
+.entry-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  color: #888;
+  font-size: 14px;
+}
+
+.sentiment-emoji {
+  font-size: 24px;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.entry-actions button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.entry-actions button:first-of-type {
+  background: #ff9800; /* Edit */
+}
+
+.entry-actions button:last-of-type {
+  background: #e91e63; /* Delete */
+}
+
+.entry-actions button:first-of-type:hover {
+  background: #f57c00;
+}
+
+.entry-actions button:last-of-type:hover {
+  background: #c2185b;
+}
+
+.edit-box textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.edit-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.edit-actions button {
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+}
+
+.edit-actions button:first-of-type {
+  background: #4caf50; /* Save */
+  color: white;
+}
+
+.edit-actions button:last-of-type {
+  background: #f44336; /* Cancel */
+  color: white;
+}
+
+.edit-actions button:first-of-type:hover {
+  background: #388e3c;
+}
+
+.edit-actions button:last-of-type:hover {
+  background: #d32f2f;
+}
+
+.error {
+  color: #d32f2f;
+  text-align: center;
+  font-weight: bold;
+}
+
+.graph-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.graph-container h3 {
+  margin-bottom: 10px;
+}
+
+.graph-container button {
+  margin-bottom: 15px;
+}
+
+.sentiment-graph {
+  width: 100% !important;
+  height: 300px !important;
 }

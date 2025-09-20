@@ -5,6 +5,8 @@ import cors from "cors";
 
 import authRoutes from "./routes/authRoutes.js";
 import diaryRoutes from "./routes/diaryRoutes.js";
+import healthRoutes from "./routes/healthRoutes.js";
+import genaiRoutes from "./routes/genaiRoutes.js"; // Import new routes
 
 dotenv.config();
 const app = express();
@@ -14,7 +16,9 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/diary", diaryRoutes); // ✅ match frontend API
+app.use("/api/diary", diaryRoutes);
+app.use("/api/health", healthRoutes);
+app.use("/api/genai", genaiRoutes); // Use new routes
 
 // DB & Server
 mongoose.connect(process.env.MONGO_URI)

@@ -1,11 +1,24 @@
 import mongoose from "mongoose";
 
-const diarySchema = new mongoose.Schema(
+const DiarySchema = new mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    text: { type: String, required: true }, // ✅ simplified: store just text
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+    mood: {
+      type: String,
+      enum: ["positive", "negative", "neutral"],
+      default: "neutral",
+    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Diary", diarySchema);
+const Diary = mongoose.model("Diary", DiarySchema);
+export default Diary;
