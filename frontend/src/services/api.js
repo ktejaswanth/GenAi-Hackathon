@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://genai-hackathon-nayanas-team.onrender.com/api", // backend URL
+  baseURL: "http://genai-hackathon-nayanas-team.onrender.com/api", // backend URL
 });
 
 // Attach token automatically
